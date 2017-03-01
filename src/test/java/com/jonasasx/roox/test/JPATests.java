@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 @SpringBootTest
 @WebAppConfiguration
 @ComponentScan({"com.jonasasx.root.test"})
-public class RooxApplicationTests {
+public class JPATests {
 	@Autowired
 	private CustomerService customerService;
 

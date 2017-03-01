@@ -1,4 +1,4 @@
-package com.jonasasx.root.test;
+package com.jonasasx.roox.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
