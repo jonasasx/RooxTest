@@ -31,7 +31,14 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
+	public Customer findByUsername(String username) {
+		return entityManager.createQuery("FROM Customer WHERE username = :username", Customer.class).setParameter("username", "username").getSingleResult();
+	}
+
+	@Override
 	public void delete(Customer customer) {
 		entityManager.remove(entityManager.contains(customer) ? customer : entityManager.merge(customer));
 	}
+
+
 }

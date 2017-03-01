@@ -12,4 +12,6 @@ public interface CustomerService {
 	Customer findById(Long id);
 
 	void delete(Customer customer);
+
+	Customer findByUsername(String username);
 }
