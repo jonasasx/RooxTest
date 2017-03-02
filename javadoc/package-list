@@ -1,0 +1,8 @@
+com.jonasasx.roox.test
+com.jonasasx.roox.test.controllers
+com.jonasasx.roox.test.entities
+com.jonasasx.roox.test.entities.enums
+com.jonasasx.roox.test.exceptions
+com.jonasasx.roox.test.security
+com.jonasasx.roox.test.services
+com.jonasasx.roox.test.services.impl
