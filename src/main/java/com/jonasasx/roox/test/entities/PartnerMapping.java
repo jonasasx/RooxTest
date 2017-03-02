@@ -21,6 +21,14 @@ public class PartnerMapping {
 	@JoinColumn(nullable = false)
 	private Customer customer;
 
+	public PartnerMapping() {
+	}
+
+	public PartnerMapping(String partnerId, String accountId, String avatarUrl) {
+		setPartnerId(partnerId);
+		setAccountId(accountId);
+		setAvatarUrl(avatarUrl);
+	}
 
 	public Long getId() {
 		return id;

@@ -1,6 +1,7 @@
 package com.jonasasx.roox.test.security;
 
 import com.jonasasx.roox.test.entities.Customer;
+import com.jonasasx.roox.test.entities.enums.CustomerStatus;
 import com.jonasasx.roox.test.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -36,6 +37,9 @@ public class CustomerIdAuthenticationProvider implements AuthenticationProvider 
 		Customer customer = customerService.findById(id);
 		if (customer == null) {
 			throw new OAuth2Exception("Customer not found");
+		}
+		if (customer.getStatus() == CustomerStatus.BLOCKED) {
+			throw new OAuth2Exception("Customer is blocked");
 		}
 		return new PreAuthenticatedAuthenticationToken(customer, null, Collections.EMPTY_LIST);
 	}

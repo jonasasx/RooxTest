@@ -20,11 +20,23 @@ public class Customer {
 	private BigDecimal balance;
 	private CustomerStatus status = CustomerStatus.ACTIVE;
 	private String login;
+
+	@JsonIgnore
 	private String password;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Collection<PartnerMapping> partnerMappings = new HashSet<>();
 
+	public Customer() {
+
+	}
+
+	public Customer(String fio, String login, String password, BigDecimal balance) {
+		setFio(fio);
+		setLogin(login);
+		setPassword(password);
+		setBalance(balance);
+	}
 
 	public Long getId() {
 		return id;
