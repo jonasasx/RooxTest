@@ -9,6 +9,8 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 /**
+ * Partner Mapping Service Implementation
+ * <p>
  * Created by ionas on 01.03.17.
  */
 @Service
@@ -18,11 +20,17 @@ public class PartnerMappingServiceImpl implements PartnerMappingService {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public PartnerMapping findPartnerMappingById(Long id) {
 		return entityManager.find(PartnerMapping.class, id);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean exists(PartnerMapping partnerMapping) {
 		return entityManager.createQuery("FROM PartnerMapping WHERE partnerId=:partnerId AND accountId=:accountId")
@@ -30,6 +38,9 @@ public class PartnerMappingServiceImpl implements PartnerMappingService {
 				.setParameter("accountId", partnerMapping.getAccountId()).getResultList().iterator().hasNext();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public PartnerMapping save(PartnerMapping partnerMapping) {
 		if (partnerMapping.getId() == null) {
@@ -39,6 +50,9 @@ public class PartnerMappingServiceImpl implements PartnerMappingService {
 		return entityManager.merge(partnerMapping);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void delete(PartnerMapping partnerMapping) {
 		partnerMapping = entityManager.contains(partnerMapping) ? partnerMapping : entityManager.merge(partnerMapping);

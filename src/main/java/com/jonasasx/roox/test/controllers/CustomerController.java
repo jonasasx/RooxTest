@@ -10,12 +10,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * Customer controller
+ * <p>
  * Created by ionas on 02.03.17.
  */
 @RestController
 @RequestMapping("/customer")
 public class CustomerController extends ApiController {
 
+	/**
+	 * Get customer by id
+	 *
+	 * @param cid customer's id
+	 * @return customer
+	 * @throws ResourceNotFoundException
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/{cid}")
 	public ResponseEntity<Customer> getCustomer(@PathVariable Long cid) throws ResourceNotFoundException {
 		Customer customer = customerService.findById(cid);

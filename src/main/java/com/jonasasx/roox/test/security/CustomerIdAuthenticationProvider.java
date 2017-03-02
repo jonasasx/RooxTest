@@ -5,7 +5,6 @@ import com.jonasasx.roox.test.entities.enums.CustomerStatus;
 import com.jonasasx.roox.test.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
@@ -15,6 +14,9 @@ import org.springframework.stereotype.Component;
 import java.util.Collections;
 
 /**
+ * Customer's authentication provider.
+ * Retrieves customer by id.
+ * <p>
  * Created by ionas on 02.03.17.
  */
 @Component
@@ -23,6 +25,9 @@ public class CustomerIdAuthenticationProvider implements AuthenticationProvider 
 	@Autowired
 	private CustomerService customerService;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		Object principal = authentication.getPrincipal();
@@ -44,6 +49,9 @@ public class CustomerIdAuthenticationProvider implements AuthenticationProvider 
 		return new PreAuthenticatedAuthenticationToken(customer, null, Collections.EMPTY_LIST);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean supports(Class<?> authentication) {
 		return PreAuthenticatedAuthenticationToken.class.isAssignableFrom(authentication);

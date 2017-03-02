@@ -14,11 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
+ * MVC Configuration
+ * <p>
  * Created by ionas on 01.03.17.
  */
-
 @Configuration
 public class AppConfig extends WebMvcConfigurerAdapter {
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new HandlerInterceptor() {
