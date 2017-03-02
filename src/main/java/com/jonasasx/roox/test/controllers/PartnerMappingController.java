@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
+
 /**
  * Partner mapping controller
  * <p>
@@ -46,7 +48,7 @@ public class PartnerMappingController extends ApiController {
 	 * @throws ResourceException
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "")
-	public ResponseEntity<?> createPartnerMapping(@RequestBody PartnerMapping partnerMapping,
+	public ResponseEntity<?> createPartnerMapping(@Valid @RequestBody PartnerMapping partnerMapping,
 	                                              @PathVariable Long cid, UriComponentsBuilder ucBuilder) throws ResourceException {
 		partnerMapping.setId(null);
 		if (partnerMappingService.exists(partnerMapping)) {
@@ -70,7 +72,7 @@ public class PartnerMappingController extends ApiController {
 	 * @throws ResourceException
 	 */
 	@RequestMapping(method = RequestMethod.PUT, value = "/{pid}")
-	public ResponseEntity<PartnerMapping> updatePartnerMapping(@RequestBody PartnerMapping postPartnerMapping,
+	public ResponseEntity<PartnerMapping> updatePartnerMapping(@Valid @RequestBody PartnerMapping postPartnerMapping,
 	                                                           @PathVariable Long cid, @PathVariable Long pid) throws ResourceException {
 		PartnerMapping partnerMapping = findPartnerMapping(cid, pid);
 		partnerMapping.copyData(postPartnerMapping);

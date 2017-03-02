@@ -3,6 +3,7 @@ package com.jonasasx.roox.test.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Mapping {@link Customer} to Partner's service
@@ -14,8 +15,11 @@ public class PartnerMapping {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@NotNull
 	private String partnerId;
+	@NotNull
 	private String accountId;
+	@NotNull
 	private String fio;
 	private String avatarUrl;
 
@@ -32,9 +36,10 @@ public class PartnerMapping {
 	/**
 	 * Parameterized Partner Mapping constructor
 	 */
-	public PartnerMapping(String partnerId, String accountId, String avatarUrl) {
+	public PartnerMapping(String partnerId, String accountId, String fio, String avatarUrl) {
 		setPartnerId(partnerId);
 		setAccountId(accountId);
+		setFio(fio);
 		setAvatarUrl(avatarUrl);
 	}
 

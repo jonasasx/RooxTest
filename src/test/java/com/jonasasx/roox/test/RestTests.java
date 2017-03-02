@@ -64,19 +64,19 @@ public class RestTests {
 
 		me = new Customer("Ionas", "ionas", "password", new BigDecimal(100));
 
-		PartnerMapping pm = new PartnerMapping("vkapp001", "2207", "https://example.com/uploads/ava.jpg");
+		PartnerMapping pm = new PartnerMapping("vkapp001", "2207", "Ionas", "https://example.com/uploads/ava.jpg");
 		pm.setCustomer(me);
 
-		pm = new PartnerMapping("fb001", "ae23407", "https://example.com/uploads/ava.jpg");
+		pm = new PartnerMapping("fb001", "ae23407", "Ionas", "https://example.com/uploads/ava.jpg");
 		pm.setCustomer(me);
 
 		customerService.save(me);
 
 		he = new Customer("Paul", "paul", "foobar", new BigDecimal(200));
-		pm = new PartnerMapping("vkapp001", "2208", "https://example.com/uploads/ava2.jpg");
+		pm = new PartnerMapping("vkapp001", "2208", "Paul", "https://example.com/uploads/ava2.jpg");
 		pm.setCustomer(he);
 
-		pm = new PartnerMapping("fb001", "ae23408", "https://example.com/uploads/ava2.jpg");
+		pm = new PartnerMapping("fb001", "ae23408", "Paul", "https://example.com/uploads/ava2.jpg");
 		pm.setCustomer(he);
 
 		customerService.save(he);
@@ -120,7 +120,7 @@ public class RestTests {
 
 	@Test
 	public void createPartnerMapping() throws Exception {
-		PartnerMapping pm = new PartnerMapping("fb001", "ae2340x" + System.currentTimeMillis(), "https://example.com/uploads/ava0.jpg");
+		PartnerMapping pm = new PartnerMapping("fb001", "ae2340x" + System.currentTimeMillis(), "Ionas", "https://example.com/uploads/ava0.jpg");
 		String json = objectMapper.writeValueAsString(pm);
 		ResultActions request = mockMvc.perform(
 				post("/customer/" + me.getId() + "/partnerMapping")
@@ -148,7 +148,7 @@ public class RestTests {
 
 	@Test
 	public void updatePartnerMapping() throws Exception {
-		PartnerMapping pm = new PartnerMapping("fb001", "ae2340x" + System.currentTimeMillis(), "https://example.com/uploads/ava0.jpg");
+		PartnerMapping pm = new PartnerMapping("fb001", "ae2340x" + System.currentTimeMillis(), "Ionas", "https://example.com/uploads/ava0.jpg");
 		String json = objectMapper.writeValueAsString(pm);
 		ResultActions request = mockMvc.perform(
 				post("/customer/" + me.getId() + "/partnerMapping")
@@ -180,7 +180,7 @@ public class RestTests {
 
 	@Test
 	public void deletePartnerMapping() throws Exception {
-		PartnerMapping pm = new PartnerMapping("fb001", "ae2340x" + System.currentTimeMillis(), "https://example.com/uploads/ava0.jpg");
+		PartnerMapping pm = new PartnerMapping("fb001", "ae2340x" + System.currentTimeMillis(), "Ionas", "https://example.com/uploads/ava0.jpg");
 		String json = objectMapper.writeValueAsString(pm);
 		ResultActions request = mockMvc.perform(
 				post("/customer/" + me.getId() + "/partnerMapping")

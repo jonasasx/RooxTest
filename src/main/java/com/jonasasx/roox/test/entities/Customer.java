@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jonasasx.roox.test.entities.enums.CustomerStatus;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.HashSet;
@@ -18,11 +19,15 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@NotNull
 	private String fio;
-	private BigDecimal balance;
+	@NotNull
+	private BigDecimal balance = BigDecimal.ZERO;
+	@NotNull
 	private CustomerStatus status = CustomerStatus.ACTIVE;
+	@NotNull
 	private String login;
-
+	@NotNull
 	@JsonIgnore
 	private String password;
 
