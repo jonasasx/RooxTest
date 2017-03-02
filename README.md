@@ -1,10 +1,14 @@
 # RooxTest
 Example of RESTfull application with Spring Boot
 
-Authorization:
-`Authorization: Bearer customerId`
+## JavaDoc
+https://jonasasx.github.io/RooxTest/javadoc/
+
 
 ## Api Reference
+
+Authorization:
+`Authorization: Bearer customerId`
 
 **Get Customer**
 ----
