@@ -1,5 +1,6 @@
 package com.jonasasx.roox.test.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jonasasx.roox.test.entities.enums.CustomerStatus;
 
 import javax.persistence.*;
@@ -74,7 +75,7 @@ public class Customer {
 		this.password = password;
 	}
 
-
+	@JsonIgnore
 	public Collection<PartnerMapping> getPartnerMappings() {
 		return partnerMappings;
 	}

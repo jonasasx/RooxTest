@@ -7,4 +7,10 @@ import com.jonasasx.roox.test.entities.PartnerMapping;
  */
 public interface PartnerMappingService {
 	PartnerMapping findPartnerMappingById(Long id);
+
+	boolean exists(PartnerMapping partnerMapping);
+
+	PartnerMapping save(PartnerMapping partnerMapping);
+
+	void delete(PartnerMapping partnerMapping);
 }

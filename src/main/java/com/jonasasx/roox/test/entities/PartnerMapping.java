@@ -1,5 +1,7 @@
 package com.jonasasx.roox.test.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -14,6 +16,7 @@ public class PartnerMapping {
 	private String accountId;
 	private String fio;
 	private String avatarUrl;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(nullable = false)
 	private Customer customer;
@@ -59,7 +62,7 @@ public class PartnerMapping {
 		this.avatarUrl = avatarUrl;
 	}
 
-
+	@JsonIgnore
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -76,5 +79,12 @@ public class PartnerMapping {
 		if (customer != null) {
 			customer.addPartnerMapping(this);
 		}
+	}
+
+	public void copyData(PartnerMapping that) {
+		setAvatarUrl(that.getAvatarUrl());
+		setFio(that.getFio());
+		setPartnerId(that.getPartnerId());
+		setAccountId(that.getAccountId());
 	}
 }

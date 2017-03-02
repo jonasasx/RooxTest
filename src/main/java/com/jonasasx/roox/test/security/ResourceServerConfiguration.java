@@ -13,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -38,6 +39,7 @@ import java.util.List;
 
 @Configuration
 @EnableResourceServer
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 	private static final String RESOURCE_ID = "rest_api";
 
@@ -67,9 +69,9 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 	public void configure(HttpSecurity http) throws Exception {
 		http.
 				anonymous().disable()
-				.requestMatchers().antMatchers("/user/**")
+				.requestMatchers().antMatchers("/customer/**")
 				.and().authorizeRequests()
-				.antMatchers("/user/**").access("isAuthenticated()");
+				.antMatchers("/customer/**").access("isAuthenticated()");
 	}
 
 	@Bean

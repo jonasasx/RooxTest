@@ -22,4 +22,27 @@ public class PartnerMappingServiceImpl implements PartnerMappingService {
 	public PartnerMapping findPartnerMappingById(Long id) {
 		return entityManager.find(PartnerMapping.class, id);
 	}
+
+	@Override
+	public boolean exists(PartnerMapping partnerMapping) {
+		return entityManager.createQuery("FROM PartnerMapping WHERE partnerId=:partnerId AND accountId=:accountId")
+				.setParameter("partnerId", partnerMapping.getPartnerId())
+				.setParameter("accountId", partnerMapping.getAccountId()).getResultList().iterator().hasNext();
+	}
+
+	@Override
+	public PartnerMapping save(PartnerMapping partnerMapping) {
+		if (partnerMapping.getId() == null) {
+			entityManager.persist(partnerMapping);
+			return partnerMapping;
+		}
+		return entityManager.merge(partnerMapping);
+	}
+
+	@Override
+	public void delete(PartnerMapping partnerMapping) {
+		partnerMapping = entityManager.contains(partnerMapping) ? partnerMapping : entityManager.merge(partnerMapping);
+		partnerMapping.setCustomer(null);
+		entityManager.remove(partnerMapping);
+	}
 }
