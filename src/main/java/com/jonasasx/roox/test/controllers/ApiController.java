@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@PreAuthorize("#cid == null || #cid == principal.id")
+@PreAuthorize("#cid == null || #cid == principal.id || #cid == '@me'")
 public class ApiController {
 
 	@Autowired
